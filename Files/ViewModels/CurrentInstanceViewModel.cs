@@ -13,9 +13,9 @@ namespace Files.ViewModels
 
         public FolderSettingsViewModel FolderSettings { get; }
 
-        public CurrentInstanceViewModel(IShellPage associatedInstance)
+        public CurrentInstanceViewModel(ItemViewModel itemViewModel)
         {
-            FolderSettings = new FolderSettingsViewModel(associatedInstance);
+            FolderSettings = new FolderSettingsViewModel(itemViewModel);
         }
 
         private bool isPageTypeSearchResults = false;

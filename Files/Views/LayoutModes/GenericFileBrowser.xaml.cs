@@ -511,7 +511,7 @@ namespace Files.Views.LayoutModes
         {
             if (ParentShellPageInstance != null)
             {
-                if (ParentShellPageInstance.CurrentPageType == typeof(GenericFileBrowser))
+                if (ParentShellPageInstance.CurrentPageType == DisplayPageType.GenericFileBrowser)
                 {
                     // Don't block the various uses of enter key (key 13)
                     var focusedElement = FocusManager.GetFocusedElement() as FrameworkElement;

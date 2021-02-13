@@ -4,6 +4,7 @@ using Files.Filesystem;
 using Files.Filesystem.FilesystemHistory;
 using Files.Filesystem.Search;
 using Files.Helpers;
+using Files.Helpers.Convert;
 using Files.Interacts;
 using Files.UserControls;
 using Files.UserControls.MultitaskingControl;
@@ -158,8 +159,13 @@ namespace Files.Views
 
         public bool IsPageSecondaryPane => !IsMultiPaneActive || !IsPageMainPane;
 
-        public Control OperationsControl => null;
-        public Type CurrentPageType => ItemDisplayFrame.SourcePageType;
+        public DisplayPageType CurrentPageType
+        {
+            get
+            {
+                return DisplayLayoutConverter.Convert(ItemDisplayFrame.SourcePageType);
+            }
+        }
 
         public INavigationControlItem SidebarSelectedItem
         {
@@ -179,7 +185,7 @@ namespace Files.Views
         {
             InitializeComponent();
 
-            InstanceViewModel = new CurrentInstanceViewModel(this);
+            InstanceViewModel = new CurrentInstanceViewModel(FilesystemViewModel);
             cancellationTokenSource = new CancellationTokenSource();
             FilesystemHelpers = new FilesystemHelpers(this, cancellationTokenSource.Token);
             storageHistoryHelpers = new StorageHistoryHelpers(new StorageHistoryOperations(this, cancellationTokenSource.Token));
@@ -712,7 +718,7 @@ namespace Files.Views
                         else // Not a file or not accessible
                         {
                             var workingDir = string.IsNullOrEmpty(FilesystemViewModel.WorkingDirectory)
-                                    || CurrentPageType == typeof(YourHome)
+                                    || CurrentPageType == DisplayPageType.HomePage
                                 ? AppSettings.HomePath
                                 : FilesystemViewModel.WorkingDirectory;
 
@@ -933,7 +939,7 @@ namespace Files.Views
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ServiceConnection = await AppServiceConnectionHelper.BuildConnection();
-            FilesystemViewModel = new ItemViewModel(ServiceConnection, InstanceViewModel?.FolderSettings);
+            FilesystemViewModel = new ItemViewModel(ServiceConnection, InstanceViewModel.FolderSettings);
             FilesystemViewModel.OnAppServiceConnectionChanged();
             InteractionOperations = new Interaction(this);
             App.Current.Suspending += Current_Suspending;
@@ -1046,8 +1052,7 @@ namespace Files.Views
             var ctrl = args.KeyboardAccelerator.Modifiers.HasFlag(VirtualKeyModifiers.Control);
             var alt = args.KeyboardAccelerator.Modifiers.HasFlag(VirtualKeyModifiers.Menu);
             var shift = args.KeyboardAccelerator.Modifiers.HasFlag(VirtualKeyModifiers.Shift);
-            var tabInstance = CurrentPageType == typeof(GenericFileBrowser)
-                || CurrentPageType == typeof(GridViewBrowser);
+            var tabInstance = CurrentPageType == DisplayPageType.GenericFileBrowser || CurrentPageType == DisplayPageType.GridViewBrowser;
 
             switch (c: ctrl, s: shift, a: alt, t: tabInstance, k: args.KeyboardAccelerator.Key)
             {
@@ -1165,7 +1170,7 @@ namespace Files.Views
             switch (args.KeyboardAccelerator.Key)
             {
                 case VirtualKey.F2: //F2, rename
-                    if (CurrentPageType == typeof(GenericFileBrowser) || CurrentPageType == typeof(GridViewBrowser))
+                    if (CurrentPageType ==  DisplayPageType.GenericFileBrowser || CurrentPageType == DisplayPageType.GridViewBrowser)
                     {
                         if (ContentPage.IsItemSelected)
                         {

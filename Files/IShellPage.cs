@@ -18,13 +18,20 @@ namespace Files
         public CurrentInstanceViewModel InstanceViewModel { get; }
         public AppServiceConnection ServiceConnection { get; }
         public BaseLayout ContentPage { get; }
-        public Control OperationsControl { get; }
-        public Type CurrentPageType { get; }
+        public DisplayPageType CurrentPageType { get; }
         public IFilesystemHelpers FilesystemHelpers { get; }
         public INavigationToolbar NavigationToolbar { get; }
 
         public abstract void Refresh_Click();
         public void UpdatePathUIToWorkingDirectory(string newWorkingDir, string singleItemOverride = null);
+    }
+
+    public enum DisplayPageType
+    {
+        None = 0,
+        HomePage = 1,
+        GenericFileBrowser = 2,
+        GridViewBrowser = 4,
     }
 
     public interface IPaneHolder : IDisposable

@@ -15,11 +15,11 @@ namespace Files.ViewModels
     {
         private static readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
-        private IShellPage associatedInstance;
+        private readonly ItemViewModel itemViewModel;
 
-        public FolderSettingsViewModel(IShellPage associatedInstance)
+        public FolderSettingsViewModel(ItemViewModel itemViewModel)
         {
-            this.associatedInstance = associatedInstance;
+            this.itemViewModel = itemViewModel;
             this.LayoutPreference = new LayoutPreferences();
 
             SetLayoutInformation();
@@ -33,7 +33,7 @@ namespace Files.ViewModels
                 if (SetProperty(ref LayoutPreference.LayoutMode, value, nameof(LayoutMode)))
                 {
                     SetLayoutInformation();
-                    UpdateLayoutPreferencesForPath(associatedInstance.FilesystemViewModel.WorkingDirectory, LayoutPreference);
+                    UpdateLayoutPreferencesForPath(itemViewModel.WorkingDirectory, LayoutPreference);
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace Files.ViewModels
                         }
                         else
                         {
-                            UpdateLayoutPreferencesForPath(associatedInstance.FilesystemViewModel.WorkingDirectory, LayoutPreference);
+                            UpdateLayoutPreferencesForPath(itemViewModel.WorkingDirectory, LayoutPreference);
                         }
 
                         GridViewSizeChangeRequested?.Invoke(this, EventArgs.Empty);
@@ -212,7 +212,7 @@ namespace Files.ViewModels
                         }
                         else
                         {
-                            UpdateLayoutPreferencesForPath(associatedInstance.FilesystemViewModel.WorkingDirectory, LayoutPreference);
+                            UpdateLayoutPreferencesForPath(itemViewModel.WorkingDirectory, LayoutPreference);
                         }
 
                         if (value < Constants.Browser.GridViewBrowser.GridViewSizeMax) // Don't request a grid resize if it is already at the max size
@@ -237,7 +237,7 @@ namespace Files.ViewModels
             {
                 if (SetProperty(ref LayoutPreference.DirectorySortOption, value, nameof(DirectorySortOption)))
                 {
-                    UpdateLayoutPreferencesForPath(associatedInstance.FilesystemViewModel.WorkingDirectory, LayoutPreference);
+                    UpdateLayoutPreferencesForPath(itemViewModel.WorkingDirectory, LayoutPreference);
                     SortOptionPreferenceUpdated?.Invoke(this, new EventArgs());
                 }
             }
@@ -250,7 +250,7 @@ namespace Files.ViewModels
             {
                 if (SetProperty(ref LayoutPreference.DirectorySortDirection, value, nameof(DirectorySortDirection)))
                 {
-                    UpdateLayoutPreferencesForPath(associatedInstance.FilesystemViewModel.WorkingDirectory, LayoutPreference);
+                    UpdateLayoutPreferencesForPath(itemViewModel.WorkingDirectory, LayoutPreference);
                     SortDirectionPreferenceUpdated?.Invoke(this, new EventArgs());
                 }
             }

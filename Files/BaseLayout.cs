@@ -3,6 +3,7 @@ using Files.DataModels;
 using Files.Extensions;
 using Files.Filesystem;
 using Files.Helpers;
+using Files.Helpers.Convert;
 using Files.UserControls;
 using Files.ViewModels;
 using Files.Views;
@@ -288,7 +289,7 @@ namespace Files
             {
                 var layoutType = FolderSettings.GetLayoutType(ParentShellPageInstance.FilesystemViewModel.WorkingDirectory);
 
-                if (layoutType != ParentShellPageInstance.CurrentPageType)
+                if (DisplayLayoutConverter.Convert(layoutType) != ParentShellPageInstance.CurrentPageType)
                 {
                     FolderSettings.IsLayoutModeChanging = true;
                     ParentShellPageInstance.ContentFrame.Navigate(layoutType, new NavigationArguments()
