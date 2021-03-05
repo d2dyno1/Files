@@ -112,7 +112,7 @@ namespace Files.ViewModels.Properties
             catch (Exception ex)
             {
                 NLog.LogManager.GetCurrentClassLogger().Error(ex, ex.Message);
-                ViewModel.ItemMD5HashCalcError = true;
+                ViewModel.ItemHashCalcError = true;
             }
         }
 

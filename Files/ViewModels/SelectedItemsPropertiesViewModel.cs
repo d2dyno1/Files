@@ -259,7 +259,7 @@ namespace Files.ViewModels
 
         private bool itemHashCalcError;
 
-        public bool ItemMD5HashCalcError
+        public bool ItemHashCalcError
         {
             get => itemHashCalcError;
             set => SetProperty(ref itemHashCalcError, value);

@@ -183,7 +183,7 @@
                 <ComboBoxItem Content="MD5" />
             </ComboBox>
             <TextBlock
-                x:Name="itemMD5HashValue"
+                x:Name="itemHashValue"
                 Grid.Row="6"
                 Grid.Column="1"
                 Style="{StaticResource PropertyValueTextBlock}"
@@ -195,7 +195,7 @@
                 Grid.Column="1"
                 Margin="{StaticResource PropertyValueMargin}"
                 VerticalAlignment="Center"
-                ShowError="{x:Bind ViewModel.ItemMD5HashCalcError, Mode=OneWay}"
+                ShowError="{x:Bind ViewModel.ItemHashCalcError, Mode=OneWay}"
                 Visibility="{x:Bind ViewModel.ItemHashProgressVisibility, Mode=OneWay}" />
 
             <TextBlock
