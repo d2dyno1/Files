@@ -1,6 +1,6 @@
 ﻿namespace Files.Shared.Enums
 {
-    public enum FileNameConflictResolveOptionType : uint
+    public enum FileNameConflictResolveOptionType : int
     {
         GenerateNewName = 0,
         ReplaceExisting = 1,
