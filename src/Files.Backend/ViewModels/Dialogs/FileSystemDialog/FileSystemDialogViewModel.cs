@@ -48,6 +48,7 @@ namespace Files.Backend.ViewModels.Dialogs.FileSystemDialog
             _dialogClosingCts = new();
             Items = new(items);
 
+            PrimaryButtonClickCommand = new RelayCommand(PrimaryButtonClick);
             SecondaryButtonClickCommand = new RelayCommand(SecondaryButtonClick);
         }
 

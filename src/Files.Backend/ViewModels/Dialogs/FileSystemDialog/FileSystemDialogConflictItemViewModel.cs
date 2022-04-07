@@ -59,6 +59,7 @@ namespace Files.Backend.ViewModels.Dialogs.FileSystemDialog
 
         public void TakeAction(FileNameConflictResolveOptionType conflictResolveOption)
         {
+            IsActionTaken = true;
             ConflictResolveOption = conflictResolveOption;
         }
     }
