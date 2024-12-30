@@ -15,7 +15,8 @@
 		BorderThickness="1"
 		CanDrag="True"
 		CornerRadius="{StaticResource ControlCornerRadius}"
-		DragStarting="Dropzone_DragStarting">
+		DragStarting="Dropzone_DragStarting"
+		Drop="Dropzone_Drop">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
