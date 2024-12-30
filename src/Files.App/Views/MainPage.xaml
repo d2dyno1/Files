@@ -170,6 +170,10 @@
 			SelectedItem="{x:Bind SidebarAdaptiveViewModel.SidebarSelectedItem, Mode=TwoWay}"
 			ViewModel="{x:Bind SidebarAdaptiveViewModel}">
 
+			<sidebar:SidebarView.Footer>
+				<uc:Dropzone Margin="8"></uc:Dropzone>
+			</sidebar:SidebarView.Footer>
+
 			<!--  Inner Content  -->
 			<sidebar:SidebarView.InnerContent>
 				<Grid

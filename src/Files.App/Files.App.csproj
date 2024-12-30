@@ -40,6 +40,9 @@
         <DefineConstants>TRACE;RELEASE;NETFX_CORE;DISABLE_XAML_GENERATED_MAIN</DefineConstants>
         <Optimize>true</Optimize>
     </PropertyGroup>
+    <ItemGroup>
+      <None Remove="UserControls\Dropzone.xaml" />
+    </ItemGroup>
   
     <ItemGroup>
         <Manifest Include="app.manifest" />
@@ -138,6 +141,12 @@
 
 	<ItemGroup>
 		<AdditionalFiles Include="Strings\en-US\Resources.resw" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="UserControls\Dropzone.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
   
 </Project>

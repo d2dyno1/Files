@@ -1,0 +1,45 @@
+<UserControl
+	x:Class="Files.App.UserControls.Dropzone"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<Grid
+		Height="128"
+		Padding="8,4"
+		AllowDrop="True"
+		Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+		BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+		BorderThickness="1"
+		CanDrag="True"
+		CornerRadius="{StaticResource ControlCornerRadius}"
+		DragStarting="Dropzone_DragStarting">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<TextBlock
+			Grid.Row="0"
+			FontWeight="Semibold"
+			Text="Dropzone" />
+
+		<StackPanel
+			Grid.Row="1"
+			VerticalAlignment="Center"
+			Spacing="8">
+			<FontIcon
+				HorizontalAlignment="Center"
+				FontSize="18"
+				Glyph="&#xE896;"
+				Opacity="0.8" />
+			<TextBlock
+				HorizontalAlignment="Center"
+				FontSize="12"
+				Text="Drop items to store them temporarily."
+				TextAlignment="Center" />
+		</StackPanel>
+	</Grid>
+</UserControl>
